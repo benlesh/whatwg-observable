@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <script src="polyfill.js"></script>
+</head>
+<body>
+  <script>
+    /** add polyfill for AbortController */
+    const script = document.createElement('script');
+    script.src = '//unpkg.com/abortcontroller-polyfill/dist/browser-polyfill.js';
+    script.addEventListener('load', ready)
+    document.body.appendChild(script);
+
+    /** playground */
+    function ready() {
+      console.log('go');
+      document.on('mousemove')
+        .takeUntil(document.on('mouseup'))
+        .map((_, i) => `whatever ${i}`)
+        .subscribe(x => console.log(x))
+    }
+  </script>
+</body>
+</html>
